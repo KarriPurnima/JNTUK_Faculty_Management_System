@@ -19,9 +19,12 @@ MONGODB_URI=mongodb://localhost:27017/your_DataBase_name
 NODE_ENV=development
 PORT=3000
 
-## Setup Instructions
+## 🚨 Setup Instructions
+
+**Follow these steps to run the project:**
+
 ```bash
-git clone https://github.com/UserName/your_Repository_Name.git
+git clone https://github.com/KarriPurnima/JNTUK_Faculty_Management_System.git
 cd JNTUK_Faculty_Management_System
 npm install
 node server.js

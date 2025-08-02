@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JNTUK Faculty Management System</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏛️ JNTUK Faculty Management System</h1>
+            <nav>
+                <button id="dashboardBtn" class="nav-btn active">Dashboard</button>
+                <button id="addFacultyBtn" class="nav-btn">Add Faculty</button>
+                <button id="viewFacultyBtn" class="nav-btn">View Faculty</button>
+                <button id="ratificationBtn" class="nav-btn">Ratification</button>
+            </nav>
+        </header>
+
+        <!-- Dashboard Section -->
+        <section id="dashboard" class="section active">
+            <h2>📊 Dashboard</h2>
+            <div class="stats-grid">
+                <div class="stat-card total">
+                    <h3>Total Faculty</h3>
+                    <div class="stat-number" id="totalFaculty">0</div>
+                </div>
+                <div class="stat-card professors">
+                    <h3>Professors</h3>
+                    <div class="stat-number" id="professors">0</div>
+                </div>
+                <div class="stat-card associate">
+                    <h3>Associate Professors</h3>
+                    <div class="stat-number" id="associateProfessors">0</div>
+                </div>
+                <div class="stat-card assistant">
+                    <h3>Assistant Professors</h3>
+                    <div class="stat-number" id="assistantProfessors">0</div>
+                </div>
+            </div>
+            
+            <div class="chart-container">
+                <h3>Faculty Distribution by Department</h3>
+                <div id="departmentChart" class="chart"></div>
+            </div>
+        </section>
+
+        <!-- Add Faculty Section -->
+        <section id="addFaculty" class="section">
+            <h2>➕ Add New Faculty</h2>
+            <!-- REPLACE YOUR CURRENT FORM WITH THIS EXACT STRUCTURE -->
+
+<form id="facultyForm" class="faculty-form">
+    <div class="form-group">
+        <label for="firstName">First Name *</label>
+        <input type="text" id="firstName" name="firstName" required maxlength="50" placeholder="Enter first name">
+    </div>
+    
+    <div class="form-group">
+        <label for="lastName">Last Name *</label>
+        <input type="text" id="lastName" name="lastName" required maxlength="50" placeholder="Enter last name">
+    </div>
+    
+    <div class="form-group">
+        <label for="email">Email *</label>
+        <input type="email" id="email" name="email" required placeholder="example@jntuk.edu.in">
+    </div>
+    
+    <div class="form-group">
+        <label for="employeeId">Employee ID *</label>
+        <input type="text" id="employeeId" name="employeeId" required placeholder="JNTUK001" style="text-transform: uppercase;">
+    </div>
+    
+    <div class="form-group">
+        <label for="department">Department *</label>
+        <select id="department" name="department" required>
+            <option value="">Select Department</option>
+            <option value="Computer Science Engineering">Computer Science Engineering</option>
+            <option value="Electronics and Communication Engineering">Electronics and Communication Engineering</option>
+            <option value="Electrical Engineering">Electrical Engineering</option>
+            <option value="Mechanical Engineering">Mechanical Engineering</option>
+            <option value="Civil Engineering">Civil Engineering</option>
+            <option value="Chemical Engineering">Chemical Engineering</option>
+            <option value="Information Technology">Information Technology</option>
+            <option value="Electronics and Instrumentation Engineering">Electronics and Instrumentation Engineering</option>
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <label for="designation">Designation *</label>
+        <select id="designation" name="designation" required>
+            <option value="">Select Designation</option>
+            <option value="Professor">Professor</option>
+            <option value="Associate Professor">Associate Professor</option>
+            <option value="Assistant Professor">Assistant Professor</option>
+        </select>
+    </div>
+    
+    <div class="form-group">
+        <label for="dateOfJoining">Date of Joining *</label>
+        <input type="date" id="dateOfJoining" name="dateOfJoining" required>
+    </div>
+    
+    <div class="form-group">
+        <label for="qualifications">Qualifications *</label>
+        <input type="text" id="qualifications" name="qualifications" required 
+               placeholder="Ph.D, M.Tech, B.Tech (comma separated)">
+        <small>Enter qualifications separated by commas</small>
+    </div>
+    
+    <div class="form-group">
+        <label for="teachingExperience">Teaching Experience (years) *</label>
+        <input type="number" id="teachingExperience" name="teachingExperience" 
+               required min="0" max="50" placeholder="5">
+    </div>
+    
+    <div class="form-group">
+        <label for="industryExperience">Industry Experience (years)</label>
+        <input type="number" id="industryExperience" name="industryExperience" 
+               min="0" max="50" value="0" placeholder="0">
+    </div>
+    
+    <div class="form-group">
+        <label for="researchExperience">Research Experience (years)</label>
+        <input type="number" id="researchExperience" name="researchExperience" 
+               min="0" max="50" value="0" placeholder="0">
+    </div>
+    
+    <div class="form-group">
+        <label for="journals">Journal Publications</label>
+        <input type="number" id="journals" name="journals" min="0" max="1000" value="0" placeholder="0">
+    </div>
+    
+    <div class="form-group">
+        <label for="conferences">Conference Publications</label>
+        <input type="number" id="conferences" name="conferences" min="0" max="1000" value="0" placeholder="0">
+    </div>
+    
+    <div class="form-group">
+        <label for="books">Books Published</label>
+        <input type="number" id="books" name="books" min="0" max="100" value="0" placeholder="0">
+    </div>
+    
+    <div class="form-group">
+        <label for="phone">Phone Number *</label>
+        <input type="text" id="phone" name="phone" required 
+               placeholder="9988665544 (10 digits)" 
+               pattern="[0-9]{10}" 
+               title="Please enter 10 digit phone number">
+        <small>Enter 10 digits (will be formatted as +91-xxxxxxxxxx)</small>
+    </div>
+    
+    <div class="form-buttons">
+        <button type="submit" class="btn-primary">💾 Save Faculty</button>
+        <button type="reset" class="btn-secondary">🔄 Reset Form</button>
+    </div>
+</form>
+        </section>
+
+        <!-- View Faculty Section -->
+        <section id="viewFaculty" class="section">
+            <h2>👥 Faculty List</h2>
+            <div class="filters">
+                <input type="text" id="searchInput" placeholder="🔍 Search faculty...">
+                <select id="departmentFilter">
+                    <option value="">All Departments</option>
+                    <option value="Computer Science Engineering">Computer Science Engineering</option>
+                    <option value="Electronics and Communication Engineering">Electronics and Communication Engineering</option>
+                    <option value="Electrical Engineering">Electrical Engineering</option>
+                    <option value="Mechanical Engineering">Mechanical Engineering</option>
+                    <option value="Civil Engineering">Civil Engineering</option>
+                    <option value="Chemical Engineering">Chemical Engineering</option>
+                    <option value="Information Technology">Information Technology</option>
+                </select>
+                <select id="designationFilter">
+                    <option value="">All Designations</option>
+                    <option value="Professor">Professor</option>
+                    <option value="Associate Professor">Associate Professor</option>
+                    <option value="Assistant Professor">Assistant Professor</option>
+                </select>
+            </div>
+            <div id="facultyList" class="faculty-list"></div>
+        </section>
+
+        <!-- Ratification Section -->
+        <section id="ratification" class="section">
+            <h2>✅ Faculty Ratification</h2>
+            <div id="ratificationList" class="ratification-list"></div>
+        </section>
+    </div>
+
+    <!-- Loading indicator -->
+    <div id="loading" class="loading hidden">
+        <div class="spinner"></div>
+        <p>Loading...</p>
+    </div>
+
+    <!-- Success/Error Messages -->
+    <div id="message" class="message hidden"></div>
+
+    <script src="script.js"></script>
+</body>
+</html>
